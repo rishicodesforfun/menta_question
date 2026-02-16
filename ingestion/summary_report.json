@@ -1,0 +1,62 @@
+{
+    "generated_at": "2026-02-17T01:31:00+05:30",
+    "pilot_test": "phq-4",
+    "status": "COMPLETE — STOP FOR REVIEW",
+    "artifacts": {
+        "canonical_json": "tests_json/phq-4.json",
+        "validation_report": "ingestion/validation/phq-4_report.json",
+        "accessibility_report": "ingestion/accessibility/phq-4_report.json",
+        "scoring_module": "src/scoring/phq-4.ts",
+        "unit_tests": "tests/scoring/phq-4.test.ts",
+        "integration_tests": "tests/integration/phq-4.test.ts",
+        "ui_components": [
+            "src/components/QuestionScreen.tsx",
+            "src/components/ProgressBar.tsx",
+            "src/components/ResultsPage.tsx",
+            "src/components/EscalationModal.tsx"
+        ],
+        "test_wrapper": "src/tests/phq-4/index.tsx",
+        "api_stubs": "src/api/sessions.ts",
+        "storybook_stories": [
+            "src/tests/phq-4/QuestionScreen.stories.tsx",
+            "src/tests/phq-4/ResultsPage.stories.tsx"
+        ],
+        "hooks": "src/hooks/useAutosave.ts",
+        "type_definitions": "src/types/schema.ts"
+    },
+    "test_results": {
+        "scoring_unit_tests": {
+            "passed": 18,
+            "failed": 0,
+            "total": 18
+        },
+        "integration_tests": {
+            "passed": 7,
+            "failed": 0,
+            "total": 7
+        },
+        "all_pass": true
+    },
+    "validation": {
+        "confidence": 1.0,
+        "issues": 0,
+        "needs_review": false
+    },
+    "accessibility": {
+        "wcag_level": "AA",
+        "violations": 0,
+        "components_checked": 4
+    },
+    "git": {
+        "branch": "feature/ingest-phq-4",
+        "initial_commit": "b4b6aa5",
+        "files_committed": 69
+    },
+    "remaining_tests": 20,
+    "next_steps": [
+        "Review PHQ-4 pilot artifacts",
+        "Approve pipeline structure before batch processing remaining 20 tests",
+        "Configure remote Git URL if desired",
+        "Run Storybook for visual component review (npm run storybook)"
+    ]
+}
