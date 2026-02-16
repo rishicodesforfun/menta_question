@@ -1,0 +1,31 @@
+{
+    "testId": "phq-4",
+    "confidence": 1.0,
+    "issues": [],
+    "suggestedFixes": [],
+    "needs_review": false,
+    "timestamp": "2026-02-16T23:10:00+05:30",
+    "questionCount": 4,
+    "scaleRange": {
+        "min": 0,
+        "max": 3
+    },
+    "bandsCovered": true,
+    "checks": {
+        "required_fields_present": true,
+        "question_count_correct": true,
+        "question_ids_stable": true,
+        "scale_consistent": true,
+        "bands_complete": true,
+        "subscales_valid": true,
+        "no_high_risk_items": true,
+        "non_diagnostic_disclaimer_present": true
+    },
+    "notes": [
+        "PHQ-4 is a well-structured 4-item screener with simple sum scoring.",
+        "No reverse-scored items. No high-risk items (no suicide question).",
+        "Subscales (anxiety Q1+Q2, depression Q3+Q4) correctly mapped.",
+        "All 4 severity bands have contiguous, non-overlapping ranges covering 0-12.",
+        "PRD reference: screening tool only, non-diagnostic language enforced."
+    ]
+}

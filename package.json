@@ -1,0 +1,40 @@
+{
+    "name": "mentamind-screening",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "test": "jest --passWithNoTests",
+        "test:scoring": "jest tests/scoring/",
+        "test:integration": "jest tests/integration/",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build",
+        "parse": "tsx scripts/parse-questionnaires.ts",
+        "validate": "tsx scripts/validate-questionnaires.ts"
+    },
+    "dependencies": {
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.1.0",
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.4",
+        "autoprefixer": "^10.4.20",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
+        "postcss": "^8.4.49",
+        "tailwindcss": "^3.4.17",
+        "ts-jest": "^29.2.5",
+        "tsx": "^4.19.2",
+        "typescript": "^5.6.3",
+        "vite": "^6.0.5",
+        "axe-core": "^4.10.2",
+        "@axe-core/react": "^4.10.1"
+    }
+}

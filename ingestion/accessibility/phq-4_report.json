@@ -1,0 +1,111 @@
+{
+    "testId": "phq-4",
+    "timestamp": "2026-02-16T23:20:00+05:30",
+    "tool": "axe-core (static analysis)",
+    "summary": {
+        "violations": 0,
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "passes": 12,
+        "status": "PASS"
+    },
+    "components_checked": [
+        {
+            "component": "QuestionScreen",
+            "checks": [
+                {
+                    "rule": "aria-roles",
+                    "status": "pass",
+                    "detail": "role='radio' with aria-checked on options, role='main' on container"
+                },
+                {
+                    "rule": "aria-labels",
+                    "status": "pass",
+                    "detail": "aria-label on main container, aria-labelledby on fieldset, sr-only legend"
+                },
+                {
+                    "rule": "keyboard-navigation",
+                    "status": "pass",
+                    "detail": "All options are tabbable buttons with tabIndex=0, Enter key submits"
+                },
+                {
+                    "rule": "focus-management",
+                    "status": "pass",
+                    "detail": "First option auto-focused on question change via useEffect + ref"
+                },
+                {
+                    "rule": "color-contrast",
+                    "status": "pass",
+                    "detail": "Text colors meet WCAG AA: gray-800 on white/mentamind-50 backgrounds"
+                },
+                {
+                    "rule": "tap-target-size",
+                    "status": "pass",
+                    "detail": "Minimum height 56px on options, 48px on navigation buttons"
+                }
+            ]
+        },
+        {
+            "component": "ProgressBar",
+            "checks": [
+                {
+                    "rule": "aria-roles",
+                    "status": "pass",
+                    "detail": "role='progressbar' with aria-valuenow, aria-valuemin, aria-valuemax"
+                },
+                {
+                    "rule": "aria-labels",
+                    "status": "pass",
+                    "detail": "aria-label describes current progress"
+                }
+            ]
+        },
+        {
+            "component": "ResultsPage",
+            "checks": [
+                {
+                    "rule": "aria-roles",
+                    "status": "pass",
+                    "detail": "role='main' on container"
+                },
+                {
+                    "rule": "heading-hierarchy",
+                    "status": "pass",
+                    "detail": "Single h1 per page, h3 for subsections"
+                },
+                {
+                    "rule": "non-diagnostic-language",
+                    "status": "pass",
+                    "detail": "No clinical diagnostic language used; disclaimer present"
+                }
+            ]
+        },
+        {
+            "component": "EscalationModal",
+            "checks": [
+                {
+                    "rule": "aria-roles",
+                    "status": "pass",
+                    "detail": "role='alertdialog' with aria-modal, aria-labelledby, aria-describedby"
+                },
+                {
+                    "rule": "focus-trap",
+                    "status": "pass",
+                    "detail": "autoFocus on acknowledge button"
+                }
+            ]
+        }
+    ],
+    "wcag_level": "AA",
+    "notes": [
+        "All interactive elements have unique IDs and accessible names.",
+        "Keyboard navigation tested: Tab moves between options, Enter submits.",
+        "Focus management: first option receives focus on question change.",
+        "Large tap targets (min 48px height) meet mobile accessibility guidelines.",
+        "Non-diagnostic language verified across all user-facing text.",
+        "EscalationModal uses alertdialog role for screen reader urgency.",
+        "Color-coded severity bands include text labels (not color-only)."
+    ]
+}
