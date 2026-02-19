@@ -1,17 +1,29 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { LandingPage } from './components/LandingPage';
 import { GuidedSelector } from './components/GuidedSelector';
 import { TestBrowser } from './components/TestBrowser';
 import { GenericTestRunner } from './components/GenericTestRunner';
+import { PrivacyConsent } from './components/PrivacyConsent';
+
+const CONSENT_KEY = 'mentamind_consent_accepted';
 
 type Screen =
+    | { type: 'consent' }
     | { type: 'landing' }
     | { type: 'guided' }
     | { type: 'browse' }
     | { type: 'test'; testId: string; from: 'guided' | 'browse' };
 
 function App() {
-    const [screen, setScreen] = useState<Screen>({ type: 'landing' });
+    const [screen, setScreen] = useState<Screen>(() => {
+        // Check if user has already accepted consent
+        try {
+            if (localStorage.getItem(CONSENT_KEY)) {
+                return { type: 'landing' };
+            }
+        } catch { /* noop */ }
+        return { type: 'consent' };
+    });
 
     const goLanding = useCallback(() => setScreen({ type: 'landing' }), []);
     const goGuided = useCallback(() => setScreen({ type: 'guided' }), []);
@@ -29,7 +41,22 @@ function App() {
         }
     }, [screen, goLanding]);
 
+    const handleConsent = useCallback(() => {
+        try {
+            localStorage.setItem(CONSENT_KEY, new Date().toISOString());
+        } catch { /* noop */ }
+        setScreen({ type: 'landing' });
+    }, []);
+
+    // Scroll to top on screen change
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [screen]);
+
     switch (screen.type) {
+        case 'consent':
+            return <PrivacyConsent onAccept={handleConsent} />;
+
         case 'landing':
             return <LandingPage onStart={goGuided} onBrowseAll={goBrowse} />;
 

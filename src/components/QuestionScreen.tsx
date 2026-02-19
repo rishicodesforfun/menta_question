@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { HelpTooltip } from './HelpTooltip';
 
 interface ResponseOption {
     value: number;
@@ -22,6 +23,12 @@ interface QuestionScreenProps {
     isFirst: boolean;
     isLast: boolean;
     testTitle: string;
+    /** Contextual help — "What this means" */
+    helpText?: string;
+    /** Contextual help — "Why we ask this" */
+    whyText?: string;
+    /** Contextual help — example */
+    helpExample?: string;
 }
 
 export const QuestionScreen: React.FC<QuestionScreenProps> = ({
@@ -35,6 +42,9 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
     isFirst,
     isLast,
     testTitle,
+    helpText,
+    whyText,
+    helpExample,
 }) => {
     const firstOptionRef = useRef<HTMLButtonElement>(null);
 
@@ -79,12 +89,19 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
 
             {/* Question */}
             <div className="flex-1 flex flex-col justify-center px-6 pb-8 max-w-2xl mx-auto w-full">
-                <h2
-                    id={`question-${question.id}`}
-                    className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-10 leading-snug"
-                >
-                    {question.text}
-                </h2>
+                <div className="mb-10">
+                    <h2
+                        id={`question-${question.id}`}
+                        className="text-2xl sm:text-3xl font-semibold text-gray-800 leading-snug"
+                    >
+                        {question.text}
+                    </h2>
+                    {(helpText || whyText || helpExample) && (
+                        <div className="mt-3">
+                            <HelpTooltip helpText={helpText} whyText={whyText} example={helpExample} />
+                        </div>
+                    )}
+                </div>
 
                 {/* Options */}
                 <fieldset

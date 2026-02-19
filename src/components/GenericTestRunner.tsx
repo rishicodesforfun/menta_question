@@ -3,8 +3,10 @@ import { QuestionScreen } from './QuestionScreen';
 import { ProgressBar } from './ProgressBar';
 import { GentleResultsPage } from './GentleResultsPage';
 import { useAutosave } from '../hooks/useAutosave';
+import { useSessionHistory } from '../hooks/useSessionHistory';
 import { getScorer } from '../scoring/registry';
 import { getTestData } from '../data/test-loader';
+import { getHelpText } from '../data/help-text';
 import { ScoreResult } from '../types/schema';
 
 type ScreenState = 'intro' | 'questions' | 'results';
@@ -27,6 +29,7 @@ export const GenericTestRunner: React.FC<GenericTestRunnerProps> = ({ testId, on
     const [result, setResult] = useState<ScoreResult | null>(null);
 
     const { save, load, clear } = useAutosave();
+    const { addEntry, getHistoryForTest } = useSessionHistory();
 
     // Load saved session
     useEffect(() => {
@@ -74,6 +77,14 @@ export const GenericTestRunner: React.FC<GenericTestRunnerProps> = ({ testId, on
             setResult(scoreResult);
             setScreen('results');
             clear(testId);
+            // Save to history for trend tracking
+            addEntry({
+                testId,
+                testTitle: testData.title || testData.shortTitle || testId,
+                totalScore: scoreResult.totalScore,
+                maxScore: testData.scoring?.maxScore || 0,
+                band: scoreResult.band,
+            });
         }
     }, [currentIndex, answers, clear, testId, testData, scorer]);
 
@@ -183,6 +194,9 @@ export const GenericTestRunner: React.FC<GenericTestRunnerProps> = ({ testId, on
                         isFirst={currentIndex === 0}
                         isLast={currentIndex === testData.questions.length - 1}
                         testTitle={friendlyTitle}
+                        helpText={getHelpText(testId, currentQuestion.id)?.helpText}
+                        whyText={getHelpText(testId, currentQuestion.id)?.whyText}
+                        helpExample={getHelpText(testId, currentQuestion.id)?.example}
                     />
                 </div>
             </div>
