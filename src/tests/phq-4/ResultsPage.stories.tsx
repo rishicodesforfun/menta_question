@@ -25,7 +25,9 @@ export const NoneDistress = () => (
                 Anxiety: { score: 1, band: 'Below threshold' },
                 Depression: { score: 0, band: 'Below threshold' }
             },
-            triggerAssessment: false
+            requiresEscalation: false,
+            escalationReasons: [],
+            rawAnswers: [0, 1, 0, 0]
         }}
         testData={{
             ...commonTestData,
@@ -49,7 +51,9 @@ export const MildDistress = () => (
                 Anxiety: { score: 3, band: 'Above threshold' },
                 Depression: { score: 1, band: 'Below threshold' }
             },
-            triggerAssessment: true
+            requiresEscalation: false,
+            escalationReasons: [],
+            rawAnswers: [1, 2, 1, 0]
         }}
         testData={{
             ...commonTestData,
@@ -76,9 +80,9 @@ export const SevereDistress = () => (
                 Anxiety: { score: 6, band: 'Above threshold' },
                 Depression: { score: 5, band: 'Above threshold' }
             },
-            triggerAssessment: true,
             requiresEscalation: true,
-            escalationReasons: ['High overall distress']
+            escalationReasons: ['High overall distress'],
+            rawAnswers: [3, 3, 3, 2]
         }}
         testData={{
             ...commonTestData,
