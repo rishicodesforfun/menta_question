@@ -1,5 +1,5 @@
 import React from 'react';
-import { QuestionScreen } from '../components/QuestionScreen';
+import { QuestionScreen } from '../../components/QuestionScreen';
 
 export default {
     title: 'PHQ-4/QuestionScreen',
